@@ -1,0 +1,9 @@
+language: csharp
+
+sudo: false 
+
+services:
+  - elasticsearch
+  
+script: 
+  - bash ./build.sh test
