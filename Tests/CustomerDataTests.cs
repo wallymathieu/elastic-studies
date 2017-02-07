@@ -75,7 +75,7 @@ namespace SomeBasicElasticApp.Tests
         {
             Customer customer = _client.Get<Customer>(1).Source;
             customer.Lastname += "_Updated";
-            _client.Index(customer, s => s.Refresh());
+            _client.Index(customer, s => s.Refresh(Refresh.WaitFor));
 
             var c = _client.Get<Customer>(1).Source;
             Assert.That(c.Lastname, Is.EqualTo(customer.Lastname));
@@ -124,9 +124,9 @@ namespace SomeBasicElasticApp.Tests
                 (type, obj) =>
                 {
                     Switch.On(obj)
-                        .Case((Customer c) => _client.Index(c, s => s.Refresh()))
-                        .Case((Order o) => _client.Index(o, s => s.Refresh()))
-                        .Case((Product p) => _client.Index(p, s => s.Refresh()))
+                        .Case((Customer c) => _client.Index(c, s => s.Refresh(Refresh.WaitFor)))
+                        .Case((Order o) => _client.Index(o, s => s.Refresh(Refresh.WaitFor)))
+                        .Case((Product p) => _client.Index(p, s => s.Refresh(Refresh.WaitFor)))
                         .ElseFail();
                 },
                 onIgnore: (type, property) =>
