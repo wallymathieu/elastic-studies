@@ -6,7 +6,8 @@ services:
   
 script: 
   - dotnet restore elastic-studies.sln
-  - bash ./build.sh -t test
+  - dotnet build -c Release elastic-studies.sln
+  - dotnet test -c Release tests/Tests
 
 branches:
   only:
