@@ -5,6 +5,7 @@ services:
   - elasticsearch
   
 script: 
+  - dotnet restore elastic-studies.sln
   - bash ./build.sh -t test
 
 branches:
