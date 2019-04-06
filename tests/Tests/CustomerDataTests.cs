@@ -183,6 +183,7 @@ ServerError: {resp.ServerError?.Error}");
                 order.Customer = customerId;
                 Client.Index(order, s=>s.Refresh(Refresh.False));
             });
+            Thread.Sleep(200);
         }
     }
 }
