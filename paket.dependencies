@@ -2,8 +2,6 @@
 source https://www.nuget.org/api/v2/
 
 clitool dotnet-fake
-nuget NEST
-
 
 group FakeBuild
 source https://api.nuget.org/v3/index.json
