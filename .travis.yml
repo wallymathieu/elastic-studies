@@ -1,9 +1,17 @@
 language: csharp
-
-sudo: false 
-
+dotnet: 2.2
+dist: xenial
 services:
   - elasticsearch
   
 script: 
-  - bash ./build.sh test
+  - dotnet restore elastic-studies.sln
+  - dotnet build -c Release elastic-studies.sln
+  - dotnet test -c Release tests/Tests
+
+branches:
+  only:
+    - master
+global:
+    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
+    - DOTNET_CLI_TELEMETRY_OPTOUT=1
